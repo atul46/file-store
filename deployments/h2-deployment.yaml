@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: h2
+  name: h2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: h2
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: h2
+    spec:
+      containers:
+      - image: 1000kit/h2
+        imagePullPolicy: ""
+        name: h2
+        ports:
+        - containerPort: 8181
+        - containerPort: 1521
+        resources: {}
+        volumeMounts:
+        - mountPath: /opt/h2-data
+          name: h2-data
+      hostname: h2
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: h2-data
+        persistentVolumeClaim:
+          claimName: h2-data
+status: {}
