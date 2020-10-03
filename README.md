@@ -24,4 +24,7 @@
      SWAGGER URI:  
      
      http://localhost:8181/file-store/swagger-ui.html
+     
+     if running independtly,
+      http://localhost:8080/file-store/swagger-ui.html  
         
